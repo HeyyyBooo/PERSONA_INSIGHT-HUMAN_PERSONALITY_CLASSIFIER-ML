@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HUMAN PERSONALITY CLASSIFIER</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Gill Sans MT', sans-serif;
+            background-image: url('static/images/bg.jpg'); 
+            background-size: cover;
+            background-position: center;
+            color: #ffffff;
+        }
+        h4{
+            color: rgba(247, 149, 12, 0.703);
+            margin-left: 62%;
+            margin-top: 5%;
+        }
+
+        #header {
+            display: flex;
+
+            align-items: center;
+            padding: 10px;
+            text-align: left;
+            background-color: rgba(19, 142, 153, 0.692);
+            padding: 20px;
+        }
+
+        #header img {
+            max-width: 65px;
+            max-height: 65px;
+            margin-right: 20px;
+        }
+        
+        #header div {
+            display: flex;
+            flex-direction: column; 
+            align-items: flex-start; 
+        }
+
+        #header h3 {
+            margin: 0;
+            font-size: 25px;
+        }
+
+        #header h5 {
+            margin: 0;
+            font-size: 15px;
+        }
+
+        .login {
+            background-color: rgba(247, 149, 12, 0.703);
+            padding: 15px;
+            border-radius: 10px;
+            /* margin: 50px auto; */
+            margin-left: 60%;
+            margin-top: 4%;
+            /* margin-bottom: 5%; */
+            max-width: 400px;
+            text-align: center;
+            font-size: 50px;
+        }
+        #t{
+            font-size: 12px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            margin-top: 10px;
+            font-size: 16px;
+        }
+
+        input {
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #cccccc6d;
+            border-radius: 5px;
+            width: 80%;
+        }
+
+        .radio-group {
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: rgb(37, 178, 108);
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: rgb(37, 178, 108);
+        }
+
+        #footer {
+            background-color: rgb(37, 178, 108);
+            padding: 12px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        #footer p {
+            margin: 0;
+            font-size: 12px;
+        }
+        #footer a {
+            color: #ffffff;
+            text-align: center;
+            font-size: 12px;
+        }
+        #n{
+            display: flex;
+            padding: 35px;
+            border-radius: 13px;
+            background-color: rgba(37, 178, 108, 0.749);
+            color: #ffffff;
+            text-align: center;
+            margin-left: 10%;
+            margin-right: 10%;
+            font-size: 25px;
+            margin-top: 15%;
+            margin-bottom: 25%;
+        }
+        select {
+            padding: 12px;
+            margin-top: 5px;
+            border: 1px solid #cccccc6d;
+            border-radius: 5px;
+            width: 80%;
+            background-color: #ffffff;
+            color: #333333;
+            appearance: none;
+            cursor: pointer;
+            position: relative;
+        }
+        select::after {
+            content: '\25BC';
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+        option {
+            background-color: #ffffff;
+            color: #333333;
+        }
+        select.open::after {
+            content: '\25B2'; 
+        }
+        select:hover,
+        select:focus {
+            border-color: #aaaaaa;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div id="header">
+        <img src="static/images/logo.png" alt="logo">
+        <div>
+            <h3>PERSONA INSIGHT </h3>
+            <h5>HUMAN PERSONALITY CLASSIFIER - MACHINE LEARNING</h5>
+        </div>
+        
+        
+    </div>
+    
+    <div class="login">
+        
+        
+
+        <div>
+            <p>{{ prediction_text }}</p>
+        </div>
+        <div id="t">
+            <p>scroll to know more about your "{{ prediction_text }}" Personality!!</p>
+        </div>
+    </div>
+    <div id="n">
+        <p>{{ desc }}</p>
+    </div>
+    <div id="footer">
+        <p>Machine Learning Project by Nishant Narjinary</p>
+        <p>Data Source : Kaggle</p>
+        
+    </div>
+
+</body>
+
+</html>

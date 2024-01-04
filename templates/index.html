@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HUMAN PERSONALITY CLASSIFIER</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Gill Sans MT', sans-serif;
+            background-image: url('static/images/hbg.jpg'); 
+            background-size: cover;
+            background-position: center;
+            color: #ffffff;
+        }
+        h4{
+            color: rgba(247, 149, 12, 0.703);
+            margin-left: 62%;
+            margin-top: 5%;
+        }
+
+        #header {
+            display: flex;
+            background-image: url('static/images/head.jpg');
+            align-items: center;
+            padding: 14px;
+            text-align: left;
+            /* filter: blur(10px); */
+            background-color: rgba(19, 142, 153, 0.692);
+            /* padding: 20px; */
+            -webkit-text-stroke-width: 0.4px;
+            -webkit-text-stroke-color: rgb(15, 28, 212);
+        }
+
+        #header img {
+            max-width: 65px;
+            max-height: 65px;
+            margin-right: 20px;
+        }
+        
+        #header div {
+            display: flex;
+            flex-direction: column; 
+            align-items: flex-start; 
+        }
+
+        #header h3 {
+            margin: 0;
+            font-size: 25px;
+        }
+
+        #header h5 {
+            margin: 0;
+            font-size: 15px;
+        }
+
+        .login {
+            background-color: rgba(247, 149, 12, 0.703);
+            padding: 20px;
+            border-radius: 10px;
+            /* margin: 50px auto; */
+            margin-left: 60%;
+            margin-top: 5%;
+            margin-bottom: 5%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            margin-top: 10px;
+            font-size: 16px;
+        }
+
+        input {
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #cccccc6d;
+            border-radius: 5px;
+            width: 80%;
+        }
+
+        .radio-group {
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: rgb(37, 178, 108);
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: rgb(37, 178, 108);
+        }
+
+        #footer {
+            background-color: rgb(37, 178, 108);
+            padding: 2px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        #footer p {
+            margin: 0;
+            font-size: 11px;
+        }
+        #footer a {
+            color: #ffffff;
+            text-align: center;
+            font-size: 12px;
+        }
+        select {
+            padding: 12px;
+            margin-top: 5px;
+            border: 1px solid #cccccc6d;
+            border-radius: 5px;
+            width: 80%;
+            background-color: #ffffff;
+            color: #333333;
+            appearance: none;
+            cursor: pointer;
+            position: relative;
+        }
+        select::after {
+            content: '\25BC';
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+        option {
+            background-color: #ffffff;
+            color: #333333;
+        }
+        select.open::after {
+            content: '\25B2'; 
+        }
+        select:hover,
+        select:focus {
+            border-color: #aaaaaa;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div id="header">
+        <img src="static/images/logo.png" alt="logo">
+        <div>
+            <h3>PERSONA INSIGHT </h3>
+            <h5>HUMAN PERSONALITY CLASSIFIER - MACHINE LEARNING</h5>
+        </div>
+        
+        
+    </div>
+    <h4>Based On Your Mentality How Much Do You Agree!!</h4>
+    <div class="login">
+        
+        <form action="{{ url_for('predict')}}" method="post">
+           
+            <label for="q1">Seeing other people cry can easily make you feel like you want to cry too!</label>
+            <select name="q1" id="q1" required>
+                <option value="3">Fully Agree</option>
+                <option value="2">Partially Agree</option>
+                <option value="1">Slightly Agree</option>
+                <option value="0">Neutral</option>
+                <option value="-1">Slightly Disagree</option>
+                <option value="-2">Partially Disagree</option>
+                <option value="-3">Fully Disagree</option>
+            </select>
+            <p></p>
+            <label for="q2">You often make a backup plan for a backup plan.</label>
+            <select name="q2" id="q2">
+                <option value="3">Fully Agree</option>
+                <option value="2">Partially Agree</option>
+                <option value="1">Slightly Agree</option>
+                <option value="0">Neutral</option>
+                <option value="-1">Slightly Disagree</option>
+                <option value="-2">Partially Disagree</option>
+                <option value="-3">Fully Disagree</option>
+            </select>
+            <p></p>
+            <label for="q3">You usually stay calm, even under a lot of pressure</label>
+            <select name="q3" id="q3">
+                <option value="3">Fully Agree</option>
+                <option value="2">Partially Agree</option>
+                <option value="1">Slightly Agree</option>
+                <option value="0">Neutral</option>
+                <option value="-1">Slightly Disagree</option>
+                <option value="-2">Partially Disagree</option>
+                <option value="-3">Fully Disagree</option>
+            </select>
+            <p></p>
+            <label for="q4">At social events, you rarely try to introduce yourself to new people and mostly talk to the ones you already know</label>
+            <select name="q4" id="q4">
+                <option value="3">Fully Agree</option>
+                <option value="2">Partially Agree</option>
+                <option value="1">Slightly Agree</option>
+                <option value="0">Neutral</option>
+                <option value="-1">Slightly Disagree</option>
+                <option value="-2">Partially Disagree</option>
+                <option value="-3">Fully Disagree</option>
+            </select>
+            <p></p>
+            <label for="q5">You prefer to completely finish one project before starting another.</label>
+            <select name="q5" id="q5">
+                <option value="3">Fully Agree</option>
+                <option value="2">Partially Agree</option>
+                <option value="1">Slightly Agree</option>
+                <option value="0">Neutral</option>
+                <option value="-1">Slightly Disagree</option>
+                <option value="-2">Partially Disagree</option>
+                <option value="-3">Fully Disagree</option>
+            </select>
+            <p></p>
+            <label for="q6">You like to use organizing tools like schedules and lists.</label>
+            <select name="q6" id="q6">
+                <option value="3">Fully Agree</option>
+                <option value="2">Partially Agree</option>
+                <option value="1">Slightly Agree</option>
+                <option value="0">Neutral</option>
+                <option value="-1">Slightly Disagree</option>
+                <option value="-2">Partially Disagree</option>
+                <option value="-3">Fully Disagree</option>
+            </select>
+            <p></p>
+            <label for="q7">You feel comfortable just walking up to someone you find interesting and striking up a conversation.</label>
+            <select name="q7" id="q7">
+                <option value="3">Fully Agree</option>
+                <option value="2">Partially Agree</option>
+                <option value="1">Slightly Agree</option>
+                <option value="0">Neutral</option>
+                <option value="-1">Slightly Disagree</option>
+                <option value="-2">Partially Disagree</option>
+                <option value="-3">Fully Disagree</option>
+            </select>
+            <p></p>
+            <label for="q8">You are more inclined to follow your head than your heart.</label>
+            <select name="q8" id="q8">
+                <option value="3">Fully Agree</option>
+                <option value="2">Partially Agree</option>
+                <option value="1">Slightly Agree</option>
+                <option value="0">Neutral</option>
+                <option value="-1">Slightly Disagree</option>
+                <option value="-2">Partially Disagree</option>
+                <option value="-3">Fully Disagree</option>
+            </select>
+            <p></p>
+            <label for="q9">You usually prefer just doing what you feel like at any given moment instead of planning a particular daily routine.</label>
+            <select name="q9" id="q9">
+                <option value="3">Fully Agree</option>
+                <option value="2">Partially Agree</option>
+                <option value="1">Slightly Agree</option>
+                <option value="0">Neutral</option>
+                <option value="-1">Slightly Disagree</option>
+                <option value="-2">Partially Disagree</option>
+                <option value="-3">Fully Disagree</option>
+            </select>
+            <p></p>
+            <label for="q10">You rarely worry about whether you make a good impression on people you meet.</label>
+            <select name="q10" id="q10">
+                <option value="3">Fully Agree</option>
+                <option value="2">Partially Agree</option>
+                <option value="1">Slightly Agree</option>
+                <option value="0">Neutral</option>
+                <option value="-1">Slightly Disagree</option>
+                <option value="-2">Partially Disagree</option>
+                <option value="-3">Fully Disagree</option>
+            </select>
+            <p></p>
+            <label for="q11">You enjoy participating in group activities.</label>
+            <select name="q11" id="q12">
+                <option value="3">Fully Agree</option>
+                <option value="2">Partially Agree</option>
+                <option value="1">Slightly Agree</option>
+                <option value="0">Neutral</option>
+                <option value="-1">Slightly Disagree</option>
+                <option value="-2">Partially Disagree</option>
+                <option value="-3">Fully Disagree</option>
+            </select>
+            <p></p>
+            <label for="q12">You like books and movies that make you come up with your own interpretation of the ending.</label>
+            <select name="q12" id="q12">
+                <option value="3">Fully Agree</option>
+                <option value="2">Partially Agree</option>
+                <option value="1">Slightly Agree</option>
+                <option value="0">Neutral</option>
+                <option value="-1">Slightly Disagree</option>
+                <option value="-2">Partially Disagree</option>
+                <option value="-3">Fully Disagree</option>
+            </select>
+            <p></p>
+            <label for="q13">You are interested in so many things that you find it difficult to choose what to try next.</label>
+            <select name="q13" id="q13">
+                <option value="3">Fully Agree</option>
+                <option value="2">Partially Agree</option>
+                <option value="1">Slightly Agree</option>
+                <option value="0">Neutral</option>
+                <option value="-1">Slightly Disagree</option>
+                <option value="-2">Partially Disagree</option>
+                <option value="-3">Fully Disagree</option>
+            </select>
+            <p></p>
+            <label for="q14">You are prone to worrying that things will take a turn for the worse.</label>
+            <select name="q14" id="q14">
+                <option value="3">Fully Agree</option>
+                <option value="2">Partially Agree</option>
+                <option value="1">Slightly Agree</option>
+                <option value="0">Neutral</option>
+                <option value="-1">Slightly Disagree</option>
+                <option value="-2">Partially Disagree</option>
+                <option value="-3">Fully Disagree</option>
+            </select>
+            <p></p>
+            <label for="q15">You enjoy watching people argue.</label>
+            <select name="q15" id="q15">
+                <option value="3">Fully Agree</option>
+                <option value="2">Partially Agree</option>
+                <option value="1">Slightly Agree</option>
+                <option value="0">Neutral</option>
+                <option value="-1">Slightly Disagree</option>
+                <option value="-2">Partially Disagree</option>
+                <option value="-3">Fully Disagree</option>
+            </select>
+            <p></p>
+            <label for="q16">You tend to avoid drawing attention to yourself.</label>
+            <select name="q16" id="q16">
+                <option value="3">Fully Agree</option>
+                <option value="2">Partially Agree</option>
+                <option value="1">Slightly Agree</option>
+                <option value="0">Neutral</option>
+                <option value="-1">Slightly Disagree</option>
+                <option value="-2">Partially Disagree</option>
+                <option value="-3">Fully Disagree</option>
+            </select>
+            <p></p>
+            <label for="q17">Your mood can change very quickly.</label>
+            <select name="q17" id="q17">
+                <option value="3">Fully Agree</option>
+                <option value="2">Partially Agree</option>
+                <option value="1">Slightly Agree</option>
+                <option value="0">Neutral</option>
+                <option value="-1">Slightly Disagree</option>
+                <option value="-2">Partially Disagree</option>
+                <option value="-3">Fully Disagree</option>
+            </select>
+            <p></p>
+            <label for="q18">You often end up doing things at the last possible moment.</label>
+            <select name="q18" id="q18">
+                <option value="3">Fully Agree</option>
+                <option value="2">Partially Agree</option>
+                <option value="1">Slightly Agree</option>
+                <option value="0">Neutral</option>
+                <option value="-1">Slightly Disagree</option>
+                <option value="-2">Partially Disagree</option>
+                <option value="-3">Fully Disagree</option>
+            </select>
+            <p></p>
+            <label for="q19">You usually prefer to be around others rather than on your own.</label>
+            <select name="q19" id="q19">
+                <option value="3">Fully Agree</option>
+                <option value="2">Partially Agree</option>
+                <option value="1">Slightly Agree</option>
+                <option value="0">Neutral</option>
+                <option value="-1">Slightly Disagree</option>
+                <option value="-2">Partially Disagree</option>
+                <option value="-3">Fully Disagree</option>
+            </select>
+            <p></p>
+            <label for="q20">You often have a hard time understanding other people's feelings.</label>
+            <select name="q20" id="q20">
+                <option value="3">Fully Agree</option>
+                <option value="2">Partially Agree</option>
+                <option value="1">Slightly Agree</option>
+                <option value="0">Neutral</option>
+                <option value="-1">Slightly Disagree</option>
+                <option value="-2">Partially Disagree</option>
+                <option value="-3">Fully Disagree</option>
+            </select>
+            <p></p>
+            <label for="q21">You like to have a to-do list for each day.</label>
+            <select name="q21" id="q21">
+                <option value="3">Fully Agree</option>
+                <option value="2">Partially Agree</option>
+                <option value="1">Slightly Agree</option>
+                <option value="0">Neutral</option>
+                <option value="-1">Slightly Disagree</option>
+                <option value="-2">Partially Disagree</option>
+                <option value="-3">Fully Disagree</option>
+            </select>
+            <p></p>
+            <label for="q22">You rarely feel insecure.</label>
+            <select name="q22" id="q22">
+                <option value="3">Fully Agree</option>
+                <option value="2">Partially Agree</option>
+                <option value="1">Slightly Agree</option>
+                <option value="0">Neutral</option>
+                <option value="-1">Slightly Disagree</option>
+                <option value="-2">Partially Disagree</option>
+                <option value="-3">Fully Disagree</option>
+            </select>
+            <p></p>
+            <label for="q23">You avoid making phone calls.</label>
+            <select name="q23" id="q23">
+                <option value="3">Fully Agree</option>
+                <option value="2">Partially Agree</option>
+                <option value="1">Slightly Agree</option>
+                <option value="0">Neutral</option>
+                <option value="-1">Slightly Disagree</option>
+                <option value="-2">Partially Disagree</option>
+                <option value="-3">Fully Disagree</option>
+            </select>
+            <p></p>
+            <label for="q24">You often spend a lot of time trying to understand views that are very different from your own.</label>
+            <select name="q24" id="q24">
+                <option value="3">Fully Agree</option>
+                <option value="2">Partially Agree</option>
+                <option value="1">Slightly Agree</option>
+                <option value="0">Neutral</option>
+                <option value="-1">Slightly Disagree</option>
+                <option value="-2">Partially Disagree</option>
+                <option value="-3">Fully Disagree</option>
+            </select>
+            <p></p>
+            <label for="q25">In your social circle, you are often the one who contacts your friends and initiates activities.</label>
+            <select name="q25" id="q25">
+                <option value="3">Fully Agree</option>
+                <option value="2">Partially Agree</option>
+                <option value="1">Slightly Agree</option>
+                <option value="0">Neutral</option>
+                <option value="-1">Slightly Disagree</option>
+                <option value="-2">Partially Disagree</option>
+                <option value="-3">Fully Disagree</option>
+            </select>
+            <p></p>
+            <label for="q26">You are still bothered by mistakes that you made a long time ago.</label>
+            <select name="q26" id="q26">
+                <option value="3">Fully Agree</option>
+                <option value="2">Partially Agree</option>
+                <option value="1">Slightly Agree</option>
+                <option value="0">Neutral</option>
+                <option value="-1">Slightly Disagree</option>
+                <option value="-2">Partially Disagree</option>
+                <option value="-3">Fully Disagree</option>
+            </select>
+            <p></p>
+            <label for="q27">Your emotions control you more than you control them.</label>
+            <select name="q27" id="q27">
+                <option value="3">Fully Agree</option>
+                <option value="2">Partially Agree</option>
+                <option value="1">Slightly Agree</option>
+                <option value="0">Neutral</option>
+                <option value="-1">Slightly Disagree</option>
+                <option value="-2">Partially Disagree</option>
+                <option value="-3">Fully Disagree</option>
+            </select>
+            <p></p>
+            <label for="q28">Your personal work style is closer to spontaneous bursts of energy than organized and consistent efforts.</label>
+            <select name="q28" id="q28">
+                <option value="3">Fully Agree</option>
+                <option value="2">Partially Agree</option>
+                <option value="1">Slightly Agree</option>
+                <option value="0">Neutral</option>
+                <option value="-1">Slightly Disagree</option>
+                <option value="-2">Partially Disagree</option>
+                <option value="-3">Fully Disagree</option>
+            </select>
+            <p></p>
+            <label for="q29">You would pass along a good opportunity if you thought someone else needed it more.</label>
+            <select name="q29" id="q29">
+                <option value="3">Fully Agree</option>
+                <option value="2">Partially Agree</option>
+                <option value="1">Slightly Agree</option>
+                <option value="0">Neutral</option>
+                <option value="-1">Slightly Disagree</option>
+                <option value="-2">Partially Disagree</option>
+                <option value="-3">Fully Disagree</option>
+            </select>
+            <p></p>
+            <label for="q30">You feel confident that things will work out for you.</label>
+            <select name="q30" id="q30">
+                <option value="3">Fully Agree</option>
+                <option value="2">Partially Agree</option>
+                <option value="1">Slightly Agree</option>
+                <option value="0">Neutral</option>
+                <option value="-1">Slightly Disagree</option>
+                <option value="-2">Partially Disagree</option>
+                <option value="-3">Fully Disagree</option>
+            </select>
+            <p></p>
+                <button type="submit">PREDICT</button>
+            </form>
+
+        <!-- <div>
+            <p>{{ prediction_text }}</p>
+        </div> -->
+    </div>
+
+    <div id="footer">
+        <p>Machine Learning Project by Nishant Narjinary</p> 
+        <p><a href="https://www.kaggle.com/datasets/anshulmehtakaggl/60k-responses-of-16-personalities-test-mbt?select=16P.csv">Data Source : Kaggle</a></p>
+        
+    </div>
+
+</body>
+
+</html>
